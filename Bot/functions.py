@@ -11,6 +11,7 @@ from loguru import logger
 
 # Initialize a variable to store the last selected coordinate
 last_selected_coord: List[int] = []
+CIRCLE_OFFSET = 55
 
 
 def get_random_coord(coords: List[List[int]]) -> List[int]:
@@ -60,14 +61,14 @@ def click_circle_menu(x: int, y: int, x_offset: int, y_offset: int) -> None:
 
 
 def click_top_left_circle_menu(x: int, y: int) -> None:
-    x_offset = -50
-    y_offset = random.randint(-51, -49)
+    x_offset = -CIRCLE_OFFSET
+    y_offset = -CIRCLE_OFFSET + random.randint(-1, 1)
     click_circle_menu(x, y, x_offset, y_offset)
 
 
 def click_top_center_circle_menu(x: int, y: int) -> None:
     x_offset = 0
-    y_offset = random.randint(-51, -49)
+    y_offset = -CIRCLE_OFFSET + random.randint(-1, 1)
     click_circle_menu(x, y, x_offset, y_offset)
 
 
@@ -112,20 +113,19 @@ def clear_cargo(x: int, y: int) -> None:
 
 
 def mining_behaviour(
-    tx1: int,
-    ty1: int,
-    tx2: int,
-    ty2: int,
-    mining_reset: int,
-    mining_loop: float,
-    rm_x: int,
-    rm_y: int,
-    unlock_all_targets_keys: str,
-    activate_eve_window: Callable[[], None],
-    is_stopped: Callable[[], bool],
-    auto_reset_miners: bool,
+        tx1: int,
+        ty1: int,
+        tx2: int,
+        ty2: int,
+        mining_reset: int,
+        mining_loop: float,
+        rm_x: int,
+        rm_y: int,
+        unlock_all_targets_keys: str,
+        activate_eve_window: Callable[[], None],
+        is_stopped: Callable[[], bool],
+        auto_reset_miners: bool,
 ) -> None:
-
     # start time to counter looptime
     start_time = time.time()
 
